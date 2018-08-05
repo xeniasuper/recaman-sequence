@@ -28,7 +28,7 @@ class Arc {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    frameRate(30);
+    frameRate(18);
     numbers[index] = true;
     sequence.push(index);
 }
