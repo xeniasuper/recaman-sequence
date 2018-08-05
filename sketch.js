@@ -2,11 +2,7 @@ let numbers = [];
 let numberOfSteps = 1;
 let sequence = [];
 let index = 0;
-
-let scl = 0;
-
 let arcs = [];
-
 let biggest = 0;
 
 class Arc {
