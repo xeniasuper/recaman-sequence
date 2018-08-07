@@ -1,8 +1,18 @@
+var attackLevel = 1.0;
+var releaseLevel = 0;
+var attackTime = 0.001;
+var decayTime = 0.2;
+var susPercent = 0.2;
+var releaseTime = 0.5;
+
 let numbers = [];
 let numberOfSteps = 1;
 let sequence = [];
 let index = 0;
+
+
 let arcs = [];
+
 let biggest = 0;
 
 class Arc {
@@ -28,7 +38,17 @@ class Arc {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    frameRate(18);
+    frameRate(5);
+    
+    envelope = new p5.Env();
+    envelope.setADSR(attackTime, decayTime, susPercent, releaseTime);
+    envelope.setRange(attackLevel, releaseLevel);
+    
+    oscillator = new p5.Oscillator();
+    oscillator.setType('sine');
+    oscillator.amp(envelope);
+    oscillator.start();
+  
     numbers[index] = true;
     sequence.push(index);
 }
@@ -44,6 +64,11 @@ function step() {
   let anArc = new Arc(index, next, numberOfSteps % 2);
   arcs.push(anArc);
   index = next;
+  
+  let freq = pow(2, (index % 80 - 49) / 12)  * 440;
+    
+  oscillator.freq(freq);
+  envelope.play();
 
   if (index > biggest) {
     biggest = index;
