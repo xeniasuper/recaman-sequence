@@ -53,6 +53,8 @@ function setup() {
     sequence.push(index);
 }
 
+let soundButton = document.getElementById('soundButton');
+
 function step() {
   let next = index - numberOfSteps;
   if (next < 0 || numbers[next]) {
@@ -68,7 +70,10 @@ function step() {
   let freq = pow(2, (index % 80 - 50) / 12)  * 440;
     
   oscillator.freq(freq);
-  envelope.play();
+  
+  if(soundButton.clicked === 'true'){
+      envelope.play();
+  }
 
   if (index > biggest) {
     biggest = index;
@@ -76,6 +81,14 @@ function step() {
 
   numberOfSteps++;
 }
+
+soundButton.addEventListener('click', function(){
+        if(soundButton.clicked === 'true'){
+            soundButton.clicked = 'false';
+        } else {
+            soundButton.clicked = 'true';
+        };    
+}, false);
 
 function draw() {
   step();
