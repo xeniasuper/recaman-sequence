@@ -65,7 +65,7 @@ function step() {
   arcs.push(anArc);
   index = next;
   
-  let freq = pow(2, (index % 80 - 49) / 12)  * 440;
+  let freq = pow(2, (index % 80 - 50) / 12)  * 440;
     
   oscillator.freq(freq);
   envelope.play();
