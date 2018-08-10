@@ -82,11 +82,18 @@ function step() {
   numberOfSteps++;
 }
 
+let soundOnIcon = document.getElementById("soundOn");
+let soundOffIcon = document.getElementById("soundOff");
+
 soundButton.addEventListener('click', function(){
         if(soundButton.clicked === 'true'){
             soundButton.clicked = 'false';
+            soundOnIcon.style.display="none";
+            soundOffIcon.style.display="inline-block";
         } else {
             soundButton.clicked = 'true';
+            soundOnIcon.style.display="inline-block";
+            soundOffIcon.style.display="none";
         };    
 }, false);
 
