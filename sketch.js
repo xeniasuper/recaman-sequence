@@ -25,7 +25,8 @@ class Arc {
   show() {
     let diameter = abs(this.end - this.start);
     let x = (this.end + this.start) / 2;
-    stroke("#fae");
+    //stroke("#fae");
+    stroke('#ff83a4');
     strokeWeight(0.5);
     noFill();
     if (this.direction === 0) {
