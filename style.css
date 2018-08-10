@@ -9,6 +9,11 @@ h1 {
     font-weight: 300;
 }
 
+#soundSection {
+    width: 157.85px;
+    margin-left: auto;
+    margin-right: auto;
+
 #soundBtnForm {
     display: inline-block;
 }
