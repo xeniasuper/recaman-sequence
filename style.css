@@ -1,0 +1,40 @@
+body {
+    margin: 0px;
+    padding: 0px;
+	 }
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    font-weight: 300;
+}
+
+#soundBtnForm {
+    display: inline-block;
+}
+
+#soundButton { 
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    display: inline-block;
+    margin: 5px;
+    padding: 6px 15px;
+    color: #ffffff;
+    background: #2c3e50;
+    background: #d32654;
+    border: none;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
+.sound {
+    width: 21px;
+    height: 21px;
+    display: inline-block;
+    vertical-align: middle;
+    
+}
+
+#soundOn {
+    display: none;
+}
