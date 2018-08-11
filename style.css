@@ -14,10 +14,22 @@ h2 {
     margin-left: 5%;
 }
 
+#addition {
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    text-align: center;
+    font-size: 0.7em;
+    color: gray;
+}
+
 p {
     font-family: 'Open Sans', sans-serif;
     margin-left: 5%;
     margin-right: 5%;
+}
+
+a {
+    color: gray;
 }
 
 .animation {
