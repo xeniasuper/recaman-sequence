@@ -13,15 +13,72 @@
 </head>
 <body>
     <h1>Recamán Sequence</h1>
+    <p id="sequence">0, 1, 3, 6, 2, 7, 13, 20, 12, 21, ...</p>
     
-    <div id="soundSection">
+    <br>
+    
+    <p>Recamán Sequence is a numeric one. This sequence is particularly beutiful and interesting as a kind of strange balance between order and chaos. There are two ways of discovernig the balance. The first one is to try to visualize it and the second one is to try to interpret it with music.</p>
+    
+    <h2>Visualization</h2>
+    <p>Let's say we have a counter. It's going to start at 1 and then go up (1, 2, 3, ...). For every counter value we're going to try to go backwards by couter value steps. If the spot is taken or there are no numbers backwards, we go forward.</p>
+    
+    <div>
+        <p>So, we start at 0 with counter value = 1. We're trying to go backwards, and.. Oh, no!!! There are no numbers in the sequence :( But we   don't give up and go to 1.</p>
+        <div class="animation">
+            <embed src="animations/1.swf">
+        </div>
+    </div>
+    
+    <div>
+        <p>Now we're trying to go backwards by 2. Unfortunately, we can't. So, we go forward by 2 and land on 3.</p>
+        <div class="animation">
+            <embed class="animation" src="animations/2.swf">
+        </div>
+    </div>
+    
+    <div>
+        <p>Now we want to go backwards by 3. But the spot is taken :^( So we have no alternative but to go to 6.</p>
+        <div class="animation">
+            <embed class="animation" src="animations/3.swf">
+        </div>
+    </div>
+    
+    <div>
+        <p>Far from losing hope, we should face the challenges and try to go backwards by 4. And yay! The spot is open, so we land on 2.</p>
+        <div class="animation">
+            <embed class="animation" src="animations/4.swf">
+        </div>
+    </div>
+    
+    <div>
+        <p>Now we try to go backwards by 5. Well, we can't, so we go to 7.</p>
+        <div class="animation">
+            <embed class="animation" src="animations/4.swf">
+        </div>
+    </div>
+    
+    <br>
+    
+    <p id="soOn">And so on...</p>
+    
+    <h2>Sound Interpretation</h2>
+    <p></p>
+    
+    <p>Now let's see the visualization of Recamán Sequence and hear the music!</p>
+    
+    <div id="buttonsSection">
+        <form id="visualizationBtnForm">
+            <input class="button" id="visualizationButton" type="button" value="Start visualization!" clicked="true">
+            <!-- In fact, this button means 'visualixation is turned off', so that's why the defaul value of 'clicked' is true-->
+        </form>
+        
         <form id="soundBtnForm">
-            <input id="soundButton" type="button" value="Sound" clicked="true">
+            <input class="button" id="soundButton" type="button" value="Sound" clicked="true">
             <!-- In fact, this button means 'sound is turned off', so that's why the defaul value of 'clicked' is true-->
         </form>
     
-        <img class="sound" id="soundOff" src="https://pp.userapi.com/c846419/v846419534/bb47e/uGZQw2xUHYU.jpg" alt="sound OFF">
-        <img class="sound" id="soundOn" src="https://pp.userapi.com/c846419/v846419534/bb477/7vFcWMTluPA.jpg" alt="sound ON">
+        <img class="sound" id="soundOff" src="soundOff.png" alt="sound OFF">
+        <img class="sound" id="soundOn" src="soundOn.png" alt="sound ON">
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
