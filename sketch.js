@@ -25,8 +25,7 @@ class Arc {
   show() {
     let diameter = abs(this.end - this.start);
     let x = (this.end + this.start) / 2;
-    //stroke("#fae");
-    stroke('#ff83a4');
+    stroke("#ff83a4");
     strokeWeight(0.5);
     noFill();
     if (this.direction === 0) {
@@ -68,10 +67,10 @@ function step() {
   arcs.push(anArc);
   index = next;
   
-  let freq = pow(2, (index % 80 - 50) / 12)  * 440;
+  let freq = pow(2, ((index-2) % 80 - 50) / 12)  * 440;
     
   oscillator.freq(freq);
-  
+    
   if(soundButton.clicked === 'true'){
       envelope.play();
   }
@@ -95,16 +94,29 @@ soundButton.addEventListener('click', function(){
             soundButton.clicked = 'true';
             soundOnIcon.style.display="inline-block";
             soundOffIcon.style.display="none";
+            
         };    
 }, false);
 
-function draw() {
-  step();
-  translate(0, height / 2);
-  scale(width / biggest);
-  background('#fff');
+let visualizationButton = document.getElementById('visualizationButton');
+visualizationButton.addEventListener('click', function(){
+    if (visualizationButton.clicked === 'true'){
+        visualizationButton.clicked = 'false';
+        } else {
+            visualizationButton.clicked = 'true';
+        }
+});
 
-  for (let anArc of arcs) {
-    anArc.show();
-  }
+function draw() {
+    if (visualizationButton.clicked === 'true') {
+        step();
+    }  
+    translate(0, height / 2);
+    scale(width / biggest);
+    background('#fff');
+
+    for (let anArc of arcs) {
+            anArc.show();
+    }
 }
+
