@@ -17,7 +17,7 @@
     
     <br>
     
-    <p>Recamán Sequence is a numeric one. This sequence is particularly beutiful and interesting as a kind of strange balance between order and chaos. There are two ways of discovernig the balance. The first one is to try to visualize it and the second one is to try to interpret it with music.</p>
+    <p>Recamán Sequence is a numeric sequence. It's is particularly beautiful and interesting as a kind of strange balance between order and chaos. There are two ways of discovernig the balance. The first one is to try to visualize it and the second one is to try to create an audio version of the sequence.</p>
     
     <h2>Visualization</h2>
     <p>Let's say we have a counter. It's going to start at 1 and then go up (1, 2, 3, ...). For every counter value we're going to try to go backwards by couter value steps. If the spot is taken or there are no numbers backwards, we go forward.</p>
@@ -53,7 +53,7 @@
     <div>
         <p>Now we try to go backwards by 5. Well, we can't, so we go to 7.</p>
         <div class="animation">
-            <embed class="animation" src="animations/5.swf">
+            <embed class="animation" src="animations/4.swf">
         </div>
     </div>
     
@@ -61,14 +61,11 @@
     
     <p id="soOn">And so on...</p>
     
-    <h2>Sound Interpretation</h2>
-    <p></p>
-    
-    <p>Now let's see the visualization of Recamán Sequence and hear the music!</p>
+    <p>Let's see the visualization of Recamán Sequence and the audio interpretation!</p>
     
     <div id="buttonsSection">
         <form id="visualizationBtnForm">
-            <input class="button" id="visualizationButton" type="button" value="Start visualization!" clicked="true">
+            <input class="button" id="visualizationButton" type="button" value="Start visualizing!" clicked="true">
             <!-- In fact, this button means 'visualixation is turned off', so that's why the defaul value of 'clicked' is true-->
         </form>
         
@@ -77,13 +74,19 @@
             <!-- In fact, this button means 'sound is turned off', so that's why the defaul value of 'clicked' is true-->
         </form>
     
-        <img class="sound" id="soundOff" src="pics/soundOff" alt="sound OFF">
-        <img class="sound" id="soundOn" src="pics/soundOn" alt="sound ON">
+        <img class="sound" id="soundOff" src="pics/soundOff.png" alt="sound OFF">
+        <img class="sound" id="soundOn" src="pics/soundOn.png" alt="sound ON">
     </div>
+    
+    <p id="addition">
+        This visualization was made using <a href="https://www.youtube.com/user/shiffman/"> tutorials by Daniel Shiffman</a> and inspired by <a href="https://youtu.be/FGC5TdIiT9U">Numberphile's video</a> about the sequence.
+    </p>
+    
+    <br>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.sound.min.js"></script>
     <script src="sketch.js"></script>
-</body>
+    </body>
 </html>
 
