@@ -9,18 +9,49 @@ h1 {
     font-weight: 300;
 }
 
-#soundSection {
-    width: 157.85px;
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 5%;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.animation {
+    width: 320px;
     margin-left: auto;
     margin-right: auto;
 }
 
-#soundBtnForm {
+#soOn {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+}
+
+#sequence {
+    font-style: italic;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: gray;
+    font-size: 0.8em;
+}
+
+#buttonsSection {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#soundBtnForm,
+#visualizationBtnForm{
     display: inline-block;
     text-align: center;
 }
-
-#soundButton { 
+.button { 
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     display: inline-block;
