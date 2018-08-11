@@ -19,7 +19,7 @@ h2 {
     font-style: italic;
     text-align: center;
     font-size: 0.7em;
-    color: gray;
+    color: #808080;
 }
 
 p {
@@ -29,7 +29,7 @@ p {
 }
 
 a {
-	color: #80;
+	color: #808080;
 }
 
 .animation {
