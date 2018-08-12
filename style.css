@@ -4,26 +4,18 @@ body {
 	 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     text-align: center;
     font-weight: 300;
 }
 
 h2 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     margin-left: 5%;
 }
 
-#addition {
-    font-family: 'Open Sans', sans-serif;
-    font-style: italic;
-    text-align: center;
-    font-size: 0.8em;
-    color: #808080;
-}
-
 p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -40,14 +32,14 @@ a {
 
 #soOn {
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-style: italic;
 }
 
 #sequence {
     font-style: italic;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     color: #ff83a4;
 }
 
@@ -57,13 +49,13 @@ a {
     margin-right: auto;
 }
 
-#soundBtnForm,
-#visualizationBtnForm{
+#soundButtonForm,
+#visualizationButtonForm{
     display: inline-block;
     text-align: center;
 }
 .button { 
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 400;
     display: inline-block;
     margin: 5px;
@@ -86,4 +78,12 @@ a {
 
 #soundOn {
     display: none;
+}
+
+#addition {
+    font-family: "Open Sans", sans-serif;
+    font-style: italic;
+    text-align: center;
+    font-size: 0.8em;
+    color: #808080;
 }
