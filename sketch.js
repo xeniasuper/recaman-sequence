@@ -68,10 +68,12 @@ let biggest = 0;
 function step() {
     let next = index - numberOfSteps;
     if (next < 0 || numbers[next]) {
-        next = index + numberOfSteps;
+        // There are no negative numbers in the sequence 
+        // and we can't land on a spot that has been landed on before, so
+        next = index + numberOfSteps; // we go forward from index spot by numberOfSteps
     }
   
-    numbers[next] = true;
+    numbers[next] = true; // Mark the spot as one we landed on
     sequence.push(next);
 
     let anArc = new Arc(index, next, numberOfSteps % 2);
@@ -79,9 +81,9 @@ function step() {
   
     index = next;
   
-    let freq = pow(2, ((index-2) % 80 - 50) / 12)  * 440;
+    let frequnecy = pow(2, ((index-2) % 80 - 50) / 12)  * 440;
     
-    oscillator.freq(freq);
+    oscillator.freq(frequnecy);
     
     let soundButton = document.getElementById("soundButton");
     if(soundButton.clicked === "true"){
