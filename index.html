@@ -18,6 +18,7 @@
     <br>
     
     <p>Recamán Sequence is an integer sequence. It's particularly beautiful and interesting in terms of strange balance between order and chaos. There are two ways of discovernig the balance. The first one is to try to visualize it and the second one is to try to create an audio version of the sequence.</p>
+    
     <br>
 	
     <h2>Visualization</h2>
@@ -26,35 +27,35 @@
     <div>
         <p>So, we start at 0 with counter value = 1. We're trying to go backwards, and... Oh, no!!! There are no numbers in the sequence :( But we   don't give up and go to 1.</p>
         <div class="animation">
-            <embed class="animation" src="animations/1.gif">
+            <img class="animation" src="animations/1.gif">
         </div>
     </div>
     
     <div>
         <p>Now we're trying to go backwards by 2. Unfortunately, we can't. So, we go forward by 2 and land on 3.</p>
         <div class="animation">
-            <embed class="animation" src="animations/2.gif">
+            <img class="animation" src="animations/2.gif">
         </div>
     </div>
     
     <div>
         <p>Now we want to go backwards by 3. But the spot is taken :^( So we have no alternative but to go to 6.</p>
         <div class="animation">
-            <embed class="animation" src="animations/3.gif">
+            <img class="animation" src="animations/3.gif">
         </div>
     </div>
     
     <div>
         <p>Far from losing hope, we should face the challenges and try to go backwards by 4. And yay! The spot is open, so we land on 2.</p>
         <div class="animation">
-            <embed class="animation" src="animations/4.gif">
+            <img class="animation" src="animations/4.gif">
         </div>
     </div>
     
     <div>
         <p>Now we try to go backwards by 5. Well, we can't, so we go to 7.</p>
         <div class="animation">
-            <embed class="animation" src="animations/5.gif">
+            <img class="animation" src="animations/5.gif">
         </div>
     </div>
     
@@ -65,12 +66,12 @@
     <p>Let's see the visualization of Recamán Sequence and the audio interpretation!</p>
     
     <div id="buttonsSection">
-        <form id="visualizationBtnForm">
+        <form id="visualizationButtonForm">
             <input class="button" id="visualizationButton" type="button" value="Start visualizing!" clicked="true">
             <!-- In fact, this button means 'visualixation is turned off', so that's why the defaul value of 'clicked' is true-->
         </form>
         
-        <form id="soundBtnForm">
+        <form id="soundButtonForm">
             <input class="button" id="soundButton" type="button" value="Sound" clicked="true">
             <!-- In fact, this button means 'sound is turned off', so that's why the defaul value of 'clicked' is true-->
         </form>
@@ -90,4 +91,3 @@
     <script src="sketch.js"></script>
     </body>
 </html>
-
