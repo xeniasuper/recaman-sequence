@@ -1,5 +1,5 @@
 # recaman-sequence
-#explorables
+# ExplorablesJam
 
 An explorable explanation of Recamán Sequence made for the Explorable Explanation Jam.
 
