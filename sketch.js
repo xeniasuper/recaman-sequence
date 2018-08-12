@@ -1,6 +1,6 @@
 // Xenia Fedorova, 2018
 // This is one of the ways to interpret Recamán Sequence with sound and graphics
-// Check out Numberphile YouTube channel to discover more about the interpretation and the sequnce: https://youtu.be/FGC5TdIiT9U
+// Check out Numberphile YouTube channel to discover more about the interpretation and the sequence: https://youtu.be/FGC5TdIiT9U
 // This was made using p5.js library tutorials by Daniel Shiffman 
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
 
