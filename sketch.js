@@ -2,6 +2,8 @@
 // This was made using p5.js library tutorials by Daniel Shiffman 
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
 
+
+// The section below is sound parameters that are requred by p5.js sound library
 let attackLevel = 1.0;
 let releaseLevel = 0;
 let attackTime = 0.001;
@@ -15,9 +17,7 @@ let sequence = [];
 let index = 0;
 
 
-let arcs = [];
-
-let biggest = 0;
+let arcs = []; // Here we collect arcs that we're drawing
 
 class Arc {
   constructor(start, end, direction) {
@@ -60,6 +60,8 @@ function setup() {
     
     sequence.push(index);
 }
+
+let biggest = 0;
 
 function step() {
     let next = index - numberOfSteps;
