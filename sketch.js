@@ -45,7 +45,8 @@ class Arc {
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    let canvas = createCanvas(windowWidth, windowHeight);
+    canvas.style.margin="0px";
     
     frameRate(5);
     
