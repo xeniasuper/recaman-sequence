@@ -29,7 +29,7 @@ class Arc {
   }
 
   show() {
-    let diameter = abs(this.end - this.start) / 4;
+    let diameter = abs(this.end - this.start) / 8;
     let x = (this.end + this.start) / 2;
     
     stroke("#ff83a4");
