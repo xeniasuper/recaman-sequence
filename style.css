@@ -90,7 +90,7 @@ a {
 
 
 #sketch-container {
-    height: 400px;
+    height: 300px;
 }
 
 @media only screen and (min-width : 1024px) {
@@ -101,11 +101,5 @@ a {
     p {
         margin-left: 26%;
         margin-right: 26%;
-    }
-}
-
-@media only screen and (max-width : 1023px) {
-    #sketch-container {
-        height: 300px;
     }
 }
