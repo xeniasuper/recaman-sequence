@@ -48,17 +48,13 @@ function setup() {
     let canvas = createCanvas(windowWidth, 400);
     canvas.parent("sketch-container");
     
-    canvas.style.margin="0px";
-    
-    function myFunction(x) {
-        if (x.matches) { // If media query matches
-            canvas.style.height = "300px";
-        } 
+    if (window.matchMedia("(max-width: 1023px)").matches) {
+        canvas.style.height = "300px"
+        let sketchContainer = document.getElementById("sketch-container");
+        sketchContainer.height = "300px";
     }
-
-    var x = window.matchMedia("(max-width: 1023apx)")
-    myFunction(x) // Call listener function at run time
-    x.addListener(myFunction) // Attach listener function on state changes
+    
+    canvas.style.margin="0px";
 
     
     frameRate(5);
