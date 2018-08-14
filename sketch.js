@@ -48,10 +48,8 @@ function setup() {
     let canvas = createCanvas(windowWidth, 400);
     canvas.parent("sketch-container");
     
-    if (window.matchMedia("(max-width: 1023px)").matches) {
-        canvas.style.height = "300px"
-        let sketchContainer = document.getElementById("sketch-container");
-        sketchContainer.height = "300px";
+    if (window.width < 1024) {
+        canvas = createCanvas(windowWidth, 300);
     }
     
     canvas.style.margin="0px";
