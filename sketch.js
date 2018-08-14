@@ -50,6 +50,17 @@ function setup() {
     
     canvas.style.margin="0px";
     
+    function myFunction(x) {
+        if (x.matches) { // If media query matches
+            canvas.style.height = "300px";
+        } 
+    }
+
+    var x = window.matchMedia("(max-width: 1023apx)")
+    myFunction(x) // Call listener function at run time
+    x.addListener(myFunction) // Attach listener function on state changes
+
+    
     frameRate(5);
     
     envelope = new p5.Env();
@@ -106,12 +117,12 @@ let soundOffIcon = document.getElementById("soundOff");
 soundButton.addEventListener("click", function(){
         if(soundButton.clicked === "true"){
             soundButton.clicked = "false";
-            soundOnIcon.style.display="none";
-            soundOffIcon.style.display="inline-block";
+            soundOnIcon.style.display = "none";
+            soundOffIcon.style.display = "inline-block";
         } else {
             soundButton.clicked = "true";
-            soundOnIcon.style.display="inline-block";
-            soundOffIcon.style.display="none";
+            soundOnIcon.style.display = "inline-block";
+            soundOffIcon.style.display = "none";
             
         };    
 }, false);
