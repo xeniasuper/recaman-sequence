@@ -50,6 +50,7 @@ function setup() {
     
     if (window.width < 1024) {
         canvas = createCanvas(windowWidth, 300);
+        canvas.parent("sketch-container");
     }
     
     canvas.style.margin="0px";
