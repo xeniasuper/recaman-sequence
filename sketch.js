@@ -49,9 +49,12 @@ function setup() {
     canvas.parent("sketchContainer");
     
     if (window.width < 1024) {
-        let canvas = createCanvas(windowWidth, 300);
+        canvas = createCanvas(windowWidth, 300);
         canvas.parent("sketchContainer");
-    } 
+    } else {
+        canvas = createCanvas(windowWidth, 400);
+        canvas.parent("sketchContainer");
+    }
     
     canvas.style.margin="0px";
 
