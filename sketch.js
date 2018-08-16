@@ -45,7 +45,7 @@ class Arc {
 }
 
 function setup() {
-    let canvas = createCanvas(windowWidth, 410);
+    let canvas = createCanvas(windowWidth, 400);
     canvas.parent("sketchContainer");
     
     if (window.width < 1024) {
