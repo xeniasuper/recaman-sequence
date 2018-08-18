@@ -5,7 +5,7 @@
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
 
 
-// The section below is sound parameters that are requred by p5.js sound library
+// The section below is sound parameters that are required by p5.js sound library
 let attackLevel = 1.0;
 let releaseLevel = 0;
 let attackTime = 0.001;
