@@ -1,6 +1,7 @@
 # recaman-sequence
 
 An explorable explanation of Recamán Sequence made for the Explorable Explanation Jam.
+https://xeniasuper.github.io/recaman-sequence/
 
 Check out Numberphile YouTube channel to discover more about the interpretation and the sequence: https://youtu.be/FGC5TdIiT9U
 
