@@ -5,13 +5,13 @@
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
 
 
-// The section below is a list of sound parameters that are required by p5.js sound library
-let attackLevel = 1.0;
-let releaseLevel = 0;
-let attackTime = 0.001;
-let decayTime = 0.2;
-let susPercent = 0.2;
-let releaseTime = 0.5;
+// The section below is a list of sound parameters that are required by p5 sound library
+const ATTACK_LEVEL = 1.0;
+const RELEASE_LEVEL = 0;
+const ATTACK_TIME = 0.001;
+const DECAY_TIME = 0.2;
+const SUS_PERCENT = 0.2;
+const RELEASE_TIME = 0.5;
 
 let numbers = [];
 let numberOfSteps = 1;
@@ -58,8 +58,8 @@ function setup() {
     frameRate(5);
 
     envelope = new p5.Env();
-    envelope.setADSR(attackTime, decayTime, susPercent, releaseTime);
-    envelope.setRange(attackLevel, releaseLevel);
+    envelope.setADSR(ATTACK_TIME, DECAY_TIME, SUS_PERCENT, RELEASE_TIME);
+    envelope.setRange(ATTACK_LEVEL, RELEASE_LEVEL);
 
     oscillator = new p5.Oscillator();
     oscillator.setType("sine");
@@ -80,7 +80,7 @@ function step() {
         next = index + numberOfSteps; // we go forward from index spot by numberOfSteps
     }
 
-    numbers[next] = true; // Mark the spot as one we landed on
+    numbers[next] = true; // Mark the spot as one we've landed on
     sequence.push(next);
 
     let anArc = new Arc(index, next, numberOfSteps % 2);
@@ -105,7 +105,7 @@ function step() {
 let soundOnIcon = document.getElementById("soundOn");
 let soundOffIcon = document.getElementById("soundOff");
 
-soundButton.addEventListener("click", function(){
+soundButton.addEventListener("click", () => {
         if(soundButton.clicked === "true"){
             soundButton.clicked = "false";
             soundOnIcon.style.display = "none";
@@ -119,7 +119,7 @@ soundButton.addEventListener("click", function(){
 }, false);
 
 let visualizationButton = document.getElementById('visualizationButton');
-visualizationButton.addEventListener("click", function(){
+visualizationButton.addEventListener("click", () => {
     if (visualizationButton.clicked === "true"){
         visualizationButton.clicked = "false";
         } else {
