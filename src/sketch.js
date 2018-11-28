@@ -130,12 +130,6 @@ function step() {
     numberOfSteps++;
 }
 
-// soundButton.addEventListener("mouseover", () => {
-//   soundButton.style.color = "fff";
-// })
-
-
-
 function draw() {
     if (visualizationButton.clicked === "true") {
         step();
