@@ -54,18 +54,27 @@ a {
     display: inline-block;
     text-align: center;
 }
-.button {
+/* #soundButton,
+#visualizationButton  */
+.button{
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
     display: inline-block;
     margin: 5px;
     padding: 6px 15px;
-    color: #ffffff;
-    background: #2c3e50;
-    background: #d32654;
-    border: none;
+    color: #d32654;
+    background: #fff;
+    border: 0.1em solid #d32654;
     border-radius: 5px;
     vertical-align: middle;
+    box-sizing: border-box;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.button:hover {
+  color: #fff;
+  background: #d32654;;
 }
 
 .sound {

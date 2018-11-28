@@ -6,6 +6,8 @@
 
 
 // The section below is a list of sound parameters that are required by p5 sound library
+// TODO add effects when clicking
+
 const ATTACK_LEVEL = 1.0;
 const RELEASE_LEVEL = 0;
 const ATTACK_TIME = 0.001;
@@ -19,6 +21,31 @@ let sequence = [];
 let index = 0;
 
 let arcs = []; // Here we collect arcs that we're drawing
+
+let soundOnIcon = document.getElementById("soundOn");
+let soundOffIcon = document.getElementById("soundOff");
+
+soundButton.addEventListener("click", () => {
+        if (soundButton.clicked === "true"){
+            soundButton.clicked = "false";
+            soundOnIcon.style.display = "none";
+            soundOffIcon.style.display = "inline-block";
+        } else if (visualizationButton.clicked === "true") {
+            soundButton.clicked = "true";
+            soundOnIcon.style.display = "inline-block";
+            soundOffIcon.style.display = "none";
+
+        };
+}, false);
+
+let visualizationButton = document.getElementById('visualizationButton');
+visualizationButton.addEventListener("click", () => {
+    if (visualizationButton.clicked === "true"){
+        visualizationButton.clicked = "false";
+        } else {
+            visualizationButton.clicked = "true";
+        }
+});
 
 class Arc {
   constructor(start, end, direction) {
@@ -93,6 +120,7 @@ function step() {
     oscillator.freq(frequnecy);
 
     let soundButton = document.getElementById("soundButton");
+
     if(soundButton.clicked === "true"){
         envelope.play();
     }
@@ -102,30 +130,11 @@ function step() {
     numberOfSteps++;
 }
 
-let soundOnIcon = document.getElementById("soundOn");
-let soundOffIcon = document.getElementById("soundOff");
+// soundButton.addEventListener("mouseover", () => {
+//   soundButton.style.color = "fff";
+// })
 
-soundButton.addEventListener("click", () => {
-        if(soundButton.clicked === "true"){
-            soundButton.clicked = "false";
-            soundOnIcon.style.display = "none";
-            soundOffIcon.style.display = "inline-block";
-        } else {
-            soundButton.clicked = "true";
-            soundOnIcon.style.display = "inline-block";
-            soundOffIcon.style.display = "none";
 
-        };
-}, false);
-
-let visualizationButton = document.getElementById('visualizationButton');
-visualizationButton.addEventListener("click", () => {
-    if (visualizationButton.clicked === "true"){
-        visualizationButton.clicked = "false";
-        } else {
-            visualizationButton.clicked = "true";
-        }
-});
 
 function draw() {
     if (visualizationButton.clicked === "true") {
