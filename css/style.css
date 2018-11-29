@@ -68,7 +68,7 @@ a {
     vertical-align: middle;
     box-sizing: border-box;
     text-align:center;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
 .button:hover {
@@ -92,7 +92,7 @@ a {
   padding: 0% 25%;
 }
 
-#addition {
+footer {
     font-family: "Open Sans", sans-serif;
     font-style: italic;
     text-align: center;

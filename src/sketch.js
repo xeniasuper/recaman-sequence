@@ -3,10 +3,9 @@
 // Check out Numberphile YouTube channel to discover more about the interpretation and the sequence: https://youtu.be/FGC5TdIiT9U
 // This was made using p5.js library tutorials by Daniel Shiffman
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
-
-
+//
+//
 // The section below is a list of sound parameters that are required by p5 sound library
-// TODO add effects when clicking
 
 const ATTACK_LEVEL = 1.0;
 const RELEASE_LEVEL = 0;
@@ -129,12 +128,6 @@ function step() {
     }
     numberOfSteps++;
 }
-
-// soundButton.addEventListener("mouseover", () => {
-//   soundButton.style.color = "fff";
-// })
-
-
 
 function draw() {
     if (visualizationButton.clicked === "true") {
