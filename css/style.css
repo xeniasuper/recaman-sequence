@@ -11,13 +11,11 @@ h1 {
 
 h2 {
     font-family: "Open Sans", sans-serif;
-    margin-left: 5%;
+    text-align: center;
 }
 
 p {
     font-family: "Open Sans", sans-serif;
-    margin-left: 5%;
-    margin-right: 5%;
 }
 
 a {
@@ -81,13 +79,11 @@ a {
     height: 21px;
     display: inline-block;
     vertical-align: middle;
-
 }
 
 #soundOn {
     display: none;
 }
-
 #sketchContainer {
   padding: 0% 25%;
 }
@@ -101,12 +97,10 @@ footer {
 }
 
 @media only screen and (min-width : 1024px) {
-    h2 {
-        margin-left: 26%;
-    }
-
     p {
         margin-left: 26%;
         margin-right: 26%;
     }
+
+
 }
