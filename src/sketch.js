@@ -3,10 +3,8 @@
 // Check out Numberphile YouTube channel to discover more about the interpretation and the sequence: https://youtu.be/FGC5TdIiT9U
 // This was made using p5.js library tutorials by Daniel Shiffman
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
-//
-//
-// The section below is a list of sound parameters that are required by p5 sound library
 
+// The section below is a list of sound parameters that are required by p5 sound library
 const ATTACK_LEVEL = 1.0;
 const RELEASE_LEVEL = 0;
 const ATTACK_TIME = 0.001;
@@ -46,26 +44,24 @@ visualizationButton.addEventListener("click", () => {
         }
 });
 
-class Arc {
-  constructor(start, end, direction) {
-    this.start = start;
-    this.end = end;
-    this.direction = direction;
-  }
+function Arc(start, end, direction) {
+  this.start = start;
+  this.end = end;
+  this.direction = direction;
+}
 
-  show() {
-    let diameter = abs(this.end - this.start);
-    let x = (this.end + this.start) / 2;
-    stroke("#ff83a4");
-    strokeWeight(0.5);
-    noFill();
+Arc.prototype.show = function(){
+  let diameter = abs(this.end - this.start);
+  let x = (this.end + this.start) / 2;
+  stroke("#ff83a4");
+  strokeWeight(0.5);
+  noFill();
 
-    if (this.direction === 0) {
-        arc(x, 0, diameter, diameter, PI, 0);
-    } else {
-        arc(x, 0, diameter, diameter, 0, PI);
+  if (this.direction === 0) {
+      arc(x, 0, diameter, diameter, PI, 0);
+  } else {
+      arc(x, 0, diameter, diameter, 0, PI);
     }
-  }
 }
 
 function setup() {
@@ -109,9 +105,8 @@ function step() {
     numbers[next] = true; // Mark the spot as one we've landed on
     sequence.push(next);
 
-    let anArc = new Arc(index, next, numberOfSteps % 2);
+    let anArc = new Arc(index, next, numberOfSteps % 2)
     arcs.push(anArc);
-
     index = next;
 
     let frequnecy = pow(2, ((index-2) % 80 - 50) / 12)  * 440;
