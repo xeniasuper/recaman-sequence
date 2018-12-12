@@ -105,7 +105,7 @@ function step() {
     numbers[next] = true; // Mark the spot as one we've landed on
     sequence.push(next);
 
-    let anArc = new Arc(index, next, numberOfSteps % 2)
+    let anArc = new Arc(index, next, numberOfSteps % 2);
     arcs.push(anArc);
     index = next;
 
