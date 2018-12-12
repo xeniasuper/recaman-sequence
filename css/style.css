@@ -22,6 +22,10 @@ a {
 	color: #808080;
 }
 
+input {
+  outline: none;
+}
+
 .animation {
     width: 320px;
     margin-left: auto;
