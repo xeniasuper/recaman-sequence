@@ -4,6 +4,7 @@
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
 
 // TODO: GET RID OF GLOBAL VARIABLES
+// TODO: add docstrings
 
 function Arc(start, end, direction) {
   this._start = start;
@@ -11,7 +12,7 @@ function Arc(start, end, direction) {
   this._direction = direction;
 }
 
-let arcColor = "#ff83a4"
+let arcColor = "#ff83a4";
 Arc.prototype.show = function(){
   stroke(arcColor);
   strokeWeight(0.5);
@@ -52,14 +53,9 @@ soundButton.addEventListener("click", () => {
         };
 }, false);
 
-let numbers = [];
-let numberOfSteps = 1;
+let landMarks = [];
 let sequence = [];
 let currPos = 0;
-
-let arcs = []; // Here we collect arcs that we're drawing
-// let soundButton = document.getElementById("soundButton");
-
 
 function setup() {
     let canvas = createCanvas(windowWidth, 300);
@@ -82,21 +78,23 @@ function setup() {
     oscillator.amp(envelope);
     oscillator.start();
 
-    numbers[currPos] = true; // mark that we've landed on the spot
+    landMarks[currPos] = true; // mark that we've landed on the spot
     sequence.push(currPos);
 }
 
 let biggestPos = 0;
+let numberOfSteps = 1;
+let arcs = []; // Here we collect arcs that we're drawin
 
 function step() {
     let nextPos = currPos - numberOfSteps;
-    if (nextPos < 0 || numbers[nextPos]) {
+    if (nextPos < 0 || landMarks[nextPos]) {
         // There are no negative numbers in the sequence
         // and we can't land on a spot that has been landed on before, so
         nextPos = currPos + numberOfSteps; // we go forward from currPos spot by numberOfSteps
     }
 
-    numbers[nextPos] = true; // Mark the spot as one we've landed on
+    landMarks[nextPos] = true; // Mark the spot as one we've landed on
     sequence.push(nextPos);
 
     let anArc = new Arc(currPos, nextPos, numberOfSteps % 2);
@@ -133,10 +131,10 @@ function draw() {
         step();
     }
     translate(0, height / 2);
-    scale(width / biggestPos); // making the arcs smaller when a new arc appear
+    scale(width / biggestPos);
     background("#fff");
 
     for (let anArc of arcs) {
             anArc.show();
     }
-}
+};
