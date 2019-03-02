@@ -4,65 +4,33 @@
 // This was made using p5.js library tutorials by Daniel Shiffman
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
 
-// The section below is a list of sound parameters that are required by p5 sound library
-const ATTACK_LEVEL = 1.0;
-const RELEASE_LEVEL = 0;
-const ATTACK_TIME = 0.001;
-const DECAY_TIME = 0.2;
-const SUS_PERCENT = 0.2;
-const RELEASE_TIME = 0.5;
-
-let numbers = [];
-let numberOfSteps = 1;
-let sequence = [];
-let index = 0;
-
-let arcs = []; // Here we collect arcs that we're drawing
-
-let soundOnIcon = document.getElementById("soundOn");
-let soundOffIcon = document.getElementById("soundOff");
-
-soundButton.addEventListener("click", () => {
-        if (soundButton.clicked === "true"){
-            soundButton.clicked = "false";
-            soundOnIcon.style.display = "none";
-            soundOffIcon.style.display = "inline-block";
-        } else if (visualizationButton.clicked === "true") {
-            soundButton.clicked = "true";
-            soundOnIcon.style.display = "inline-block";
-            soundOffIcon.style.display = "none";
-
-        };
-}, false);
-
-let visualizationButton = document.getElementById('visualizationButton');
-visualizationButton.addEventListener("click", () => {
-    if (visualizationButton.clicked === "true"){
-        visualizationButton.clicked = "false";
-        } else {
-            visualizationButton.clicked = "true";
-        }
-});
-
 function Arc(start, end, direction) {
-  this.start = start;
-  this.end = end;
-  this.direction = direction;
+  this._start = start;
+  this._end = end;
+  this._direction = direction;
 }
 
 Arc.prototype.show = function(){
-  let diameter = abs(this.end - this.start);
-  let x = (this.end + this.start) / 2;
+  let diameter = abs(this._end - this._start);
+  let x = (this._end + this._start) / 2;
   stroke("#ff83a4");
   strokeWeight(0.5);
   noFill();
 
-  if (this.direction === 0) {
+  if (this._direction === 0) {
       arc(x, 0, diameter, diameter, PI, 0);
   } else {
       arc(x, 0, diameter, diameter, 0, PI);
     }
 }
+
+// The section below is a list of sound parameters that are required by p5 sound library
+const attackLevel = 1.0;
+const releaseLevel = 0;
+const attackTime = 0.001;
+const decayTime = 0.2;
+const susPercent = 0.2;
+const releaseTime = 0.5;
 
 function setup() {
     let canvas = createCanvas(windowWidth, 400);
@@ -80,8 +48,8 @@ function setup() {
     frameRate(5);
 
     envelope = new p5.Env();
-    envelope.setADSR(ATTACK_TIME, DECAY_TIME, SUS_PERCENT, RELEASE_TIME);
-    envelope.setRange(ATTACK_LEVEL, RELEASE_LEVEL);
+    envelope.setADSR(attackTime, decayTime, susPercent, releaseTime);
+    envelope.setRange(attackLevel, releaseLevel);
 
     oscillator = new p5.Oscillator();
     oscillator.setType("sine");
@@ -92,7 +60,31 @@ function setup() {
     sequence.push(index);
 }
 
+let soundOnIcon = document.getElementById("sound-on");
+let soundOffIcon = document.getElementById("sound-off");
+
+let soundButton = document.getElementById("sound-button")
+soundButton.addEventListener("click", () => {
+        if (soundButton.clicked === "true"){
+            soundButton.clicked = "false";
+            soundOnIcon.style.display = "none";
+            soundOffIcon.style.display = "inline-block";
+        } else if (visualizationButton.clicked === "true") {
+            soundButton.clicked = "true";
+            soundOnIcon.style.display = "inline-block";
+            soundOffIcon.style.display = "none";
+
+        };
+}, false);
+
+let numbers = [];
+let numberOfSteps = 1;
+let sequence = [];
+let index = 0;
 let biggest = 0;
+
+let arcs = []; // Here we collect arcs that we're drawing
+// let soundButton = document.getElementById("soundButton");
 
 function step() {
     let next = index - numberOfSteps;
@@ -106,14 +98,12 @@ function step() {
     sequence.push(next);
 
     let anArc = new Arc(index, next, numberOfSteps % 2);
+
     arcs.push(anArc);
     index = next;
 
     let frequnecy = pow(2, ((index-2) % 80 - 50) / 12)  * 440;
-
     oscillator.freq(frequnecy);
-
-    let soundButton = document.getElementById("soundButton");
 
     if(soundButton.clicked === "true"){
         envelope.play();
@@ -123,6 +113,15 @@ function step() {
     }
     numberOfSteps++;
 }
+
+let visualizationButton = document.getElementById('visualization-button');
+visualizationButton.addEventListener("click", () => {
+    if (visualizationButton.clicked === "true"){
+        visualizationButton.clicked = "false";
+        } else {
+            visualizationButton.clicked = "true";
+        }
+});
 
 function draw() {
     if (visualizationButton.clicked === "true") {

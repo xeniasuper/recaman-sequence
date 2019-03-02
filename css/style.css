@@ -1,21 +1,37 @@
-body {
+html, body {
     margin: 0px;
     padding: 0px;
-	 }
+}
+
+body,
+.section
+ {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+p,
+.center-italic,
+.button {
+    font-family: "Open Sans", sans-serif;
+}
 
 h1 {
-    font-family: "Open Sans", sans-serif;
-    text-align: center;
-    font-weight: 300;
+  text-align: center;
+  font-weight: 300;
+  color: #ff83a4;
 }
 
 h2 {
-    font-family: "Open Sans", sans-serif;
     text-align: center;
-}
-
-p {
-    font-family: "Open Sans", sans-serif;
 }
 
 a {
@@ -26,41 +42,31 @@ input {
   outline: none;
 }
 
-.animation {
-    width: 320px;
-    margin-left: auto;
-    margin-right: auto;
+.section {
+  width: 75%;
 }
 
-#soOn {
-    text-align: center;
-    font-family: "Open Sans", sans-serif;
-    font-style: italic;
+img {
+  width: 100%;
 }
 
-#sequence {
-    font-style: italic;
+.center-italic {
     text-align: center;
-    font-family: "Open Sans", sans-serif;
+    font-style: italic;
     color: #ff83a4;
 }
 
-#buttonsSection {
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#soundButtonForm,
-#visualizationButtonForm{
-    display: inline-block;
-    text-align: center;
+.button-form {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
 }
 
 .button{
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
-    display: inline-block;
     margin: 5px;
     padding: 6px 15px;
     color: #d32654;
@@ -68,7 +74,6 @@ input {
     border: 0.1em solid #d32654;
     border-radius: 5px;
     vertical-align: middle;
-    box-sizing: border-box;
     text-align:center;
     transition: all 0.3s;
 }
@@ -81,15 +86,17 @@ input {
 .sound {
     width: 21px;
     height: 21px;
-    display: inline-block;
     vertical-align: middle;
 }
 
-#soundOn {
+#sound-on {
     display: none;
 }
+
 #sketchContainer {
-  padding: 0% 25%;
+  display: flex;
+  justify-content: center;
+  width: auto;
 }
 
 footer {
@@ -98,13 +105,21 @@ footer {
     text-align: center;
     font-size: 0.8em;
     color: #808080;
+    margin-bottom: 20px;
+    width: 75%;
 }
 
-@media only screen and (min-width : 1024px) {
-    p {
-        margin-left: 26%;
-        margin-right: 26%;
+#defaultCanvas0 {
+  width: 100%;
+  height: 100%;
+}
+
+.animation {
+  width: 75%;
+}
+
+@media only screen and (min-width : 376px) {
+    .section {
+      width: 40%;
     }
-
-
 }

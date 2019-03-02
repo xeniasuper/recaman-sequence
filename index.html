@@ -1,98 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<title>Recamán Sequence</title>
-
 	<link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
 </head>
 <body>
     <h1>Recamán Sequence</h1>
-    <p id="sequence">0, 1, 3, 6, 2, 7, 13, 20, 12, 21, ...</p>
+    <p id="sequence" class="center-italic">0, 1, 3, 6, 2, 7, 13, 20, 12, 21, ...</p>
 
-    <br>
-
-    <p>Recamán Sequence is an integer sequence. It's particularly beautiful and interesting in terms of strange balance between order and chaos. There are two ways of discovernig the balance. The first one is to try to visualize it and the second one is to try to create an audio version of the sequence.</p>
-
-    <br>
+    <p class="section">Recamán Sequence is an integer sequence. It's particularly beautiful and interesting in terms of strange balance between order and chaos. There are two ways of discovernig the balance. The first one is to try to visualize it and the second one is to try to create an audio version of the sequence.</p>
 
     <h2>So, how to visualize it? 🤔</h2>
-    <p>Well, let's say we have a counter. It's going to start at 1 and then go up (1, 2, 3, ...). For every counter value we're going to try to go backwards by counter value steps. If the spot is taken or there are no numbers backwards, we go forward.</p>
+    <p class="section">Well, let's say we have a counter. It's going to start at 1 and then go up (1, 2, 3, ...). For every counter value we're going to try to go backwards by counter value steps. If the spot is taken or there are no numbers backwards, we go forward.</p>
 
-    <div>
+    <div class="section sequence-descr">
         <p>So, we start at 0 with counter value = 1. We're trying to go backwards, and... Oh, no!!! There are no numbers in the sequence :( But we don't give up and go to 1.</p>
-        <div class="animation">
-            <img class="animation" alt="gif" src="animations/1.gif">
-        </div>
+        <img class="animation" alt="gif" src="animations/1.gif">
     </div>
 
-    <div>
+    <div class="section sequence-descr">
         <p>Now we're trying to go backwards by 2. Unfortunately, we can't. So, we go forward by 2 and land on 3.</p>
-        <div class="animation">
-            <img class="animation" alt="gif" src="animations/2.gif">
-        </div>
+        <img class="animation" alt="gif" src="animations/2.gif">
     </div>
 
-    <div>
+    <div class="section sequence-descr">
         <p>Now we want to go backwards by 3 and land on 1.
 					But the spot is taken :^( So, we have no alternative but to go to 6.</p>
-        <div class="animation">
-            <img class="animation" alt="gif" src="animations/3.gif">
-        </div>
+        <img class="animation" alt="gif" src="animations/3.gif">
     </div>
 
-    <div>
+    <div class="section sequence-descr">
         <p>Far from losing hope, we should face the challenges and try to go backwards by 4. And yay! The spot is open, so we land on 2.</p>
-        <div class="animation">
-            <img class="animation" alt="gif" src="animations/4.gif">
-        </div>
+        <img class="animation" alt="gif" src="animations/4.gif">
     </div>
 
-    <div>
+    <div class="section sequence-descr">
         <p>Now we try to go backwards by 5. Well, we can't... But don't worry, let's go to 7!</p>
-        <div class="animation">
-            <img class="animation" alt="gif" src="animations/5.gif">
-        </div>
+        <img class="animation" alt="gif" src="animations/5.gif">
     </div>
 
-    <br>
+    <p class="section center-italic">And so on...</p>
 
-    <p id="soOn">And so on...</p>
+    <p class="section sequence-descr">And finally let's visualize the Recamán Sequence and check out audio interpretation of it! As you'll see, it sounds kind of music that was made in the 1970s by Kraftwerk and other similar bands. It seems to me, that artists of that period would like the pattern that is drawn by the computer, too.</p>
 
-    <p>And finally let's visualize the Recamán Sequence and check out audio interpretation of it! As you'll see, it sounds kind of music that was made in the 1970s by Kraftwerk and other similar bands. It seems to me, that artists of that period would like the pattern that is drawn by the computer, too.</p>
-
-    <div id="buttonsSection">
-        <form id="visualizationButtonForm">
-            <input class="button" id="visualizationButton" type="button"
-						value="Start visualizing!" clicked="true">
-            <!-- In fact, this button means 'visualixation is turned off', so that's why the defaul value of 'clicked' is true-->
-        </form>
-
-        <form id="soundButtonForm">
-            <input class="button" id="soundButton" type="button" value="Sound"
-						clicked="true">
-            <!-- In fact, this button means 'sound is turned off', so that's why the defaul value of 'clicked' is true-->
-        </form>
-
-        <img class="sound" id="soundOff" src="pics/soundOff.png" alt="sound OFF">
-        <img class="sound" id="soundOn" src="pics/soundOn.png" alt="sound ON">
-    </div>
+    <form class="button-form">
+    	<input class="button" id="visualization-button" type="button"	value="Visualization" clicked="true">
+      <!-- In fact, this button means 'visualixation is turned off', so that's why the defaul value of 'clicked' is true-->
+      <input class="button" id="sound-button" type="button" value="Sound"	clicked="true">
+      <!-- In fact, this button means 'sound is turned off', so that's why the defaul value of 'clicked' is true-->
+	    <img class="sound" id="sound-off" src="pics/soundOff.png" alt="sound OFF">
+	    <img class="sound" id="sound-on" src="pics/soundOn.png" alt="sound ON">
+		</form>
 
     <div id="sketchContainer">
+				<!--According to p5.js documentation there can be only one sketch container, so we must use id instead of class, and the id shold be written in camelCase-->
         <!--Contains the visualization of the sequence-->
     </div>
 
     <footer>
         This visualization was made using <a href="https://www.youtube.com/user/shiffman/"> tutorials by Daniel Shiffman</a> and inspired by <a href="https://youtu.be/FGC5TdIiT9U">Numberphile's video</a> about the sequence.
     </footer>
-
-    <br>
-
     <script src="src/libraries/p5.js"></script>
     <script src="src/libraries/p5.dom.js"></script>
     <script src="src/libraries/p5.sound.js"></script>
