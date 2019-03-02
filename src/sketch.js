@@ -1,8 +1,9 @@
-// Xenia Fedorova, 2018
 // This is one of the ways to interpret Recamán Sequence with sound and graphics
 // Check out Numberphile YouTube channel to discover more about the interpretation and the sequence: https://youtu.be/FGC5TdIiT9U
 // This was made using p5.js library tutorials by Daniel Shiffman
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
+
+// TODO: GET RID OF GLOBAL VARIABLES
 
 function Arc(start, end, direction) {
   this._start = start;
@@ -10,13 +11,14 @@ function Arc(start, end, direction) {
   this._direction = direction;
 }
 
+let arcColor = "#ff83a4"
 Arc.prototype.show = function(){
-  let diameter = abs(this._end - this._start);
-  let x = (this._end + this._start) / 2;
-  stroke("#ff83a4");
+  stroke(arcColor);
   strokeWeight(0.5);
   noFill();
 
+  let diameter = abs(this._end - this._start);
+  let x = (this._end + this._start) / 2;
   if (this._direction === 0) {
       arc(x, 0, diameter, diameter, PI, 0);
   } else {
@@ -31,16 +33,40 @@ const attackTime = 0.001;
 const decayTime = 0.2;
 const susPercent = 0.2;
 const releaseTime = 0.5;
+// End of the section
+
+let soundOnIcon = document.getElementById("sound-on");
+let soundOffIcon = document.getElementById("sound-off");
+
+let soundButton = document.getElementById("sound-button")
+soundButton.addEventListener("click", () => {
+        if (soundButton.clicked === "true"){
+            soundButton.clicked = "false";
+            soundOnIcon.style.display = "none";
+            soundOffIcon.style.display = "block";
+        } else if (visualizationButton.clicked === "true") {
+            soundButton.clicked = "true";
+            soundOnIcon.style.display = "block";
+            soundOffIcon.style.display = "none";
+
+        };
+}, false);
+
+let numbers = [];
+let numberOfSteps = 1;
+let sequence = [];
+let currPos = 0;
+
+let arcs = []; // Here we collect arcs that we're drawing
+// let soundButton = document.getElementById("soundButton");
+
 
 function setup() {
-    let canvas = createCanvas(windowWidth, 400);
+    let canvas = createCanvas(windowWidth, 300);
     canvas.parent("sketchContainer");
 
-    if (window.width < 1024) {
-        canvas = createCanvas(windowWidth, 300);
-        canvas.parent("sketchContainer");
-    } else {
-        canvas = createCanvas(windowWidth/2, 400);
+    if (window.width > 376) {
+        canvas = createCanvas(windowWidth, 400);
         canvas.parent("sketchContainer");
     }
 
@@ -56,60 +82,39 @@ function setup() {
     oscillator.amp(envelope);
     oscillator.start();
 
-    numbers[index] = true;
-    sequence.push(index);
+    numbers[currPos] = true; // mark that we've landed on the spot
+    sequence.push(currPos);
 }
 
-let soundOnIcon = document.getElementById("sound-on");
-let soundOffIcon = document.getElementById("sound-off");
-
-let soundButton = document.getElementById("sound-button")
-soundButton.addEventListener("click", () => {
-        if (soundButton.clicked === "true"){
-            soundButton.clicked = "false";
-            soundOnIcon.style.display = "none";
-            soundOffIcon.style.display = "inline-block";
-        } else if (visualizationButton.clicked === "true") {
-            soundButton.clicked = "true";
-            soundOnIcon.style.display = "inline-block";
-            soundOffIcon.style.display = "none";
-
-        };
-}, false);
-
-let numbers = [];
-let numberOfSteps = 1;
-let sequence = [];
-let index = 0;
-let biggest = 0;
-
-let arcs = []; // Here we collect arcs that we're drawing
-// let soundButton = document.getElementById("soundButton");
+let biggestPos = 0;
 
 function step() {
-    let next = index - numberOfSteps;
-    if (next < 0 || numbers[next]) {
+    let nextPos = currPos - numberOfSteps;
+    if (nextPos < 0 || numbers[nextPos]) {
         // There are no negative numbers in the sequence
         // and we can't land on a spot that has been landed on before, so
-        next = index + numberOfSteps; // we go forward from index spot by numberOfSteps
+        nextPos = currPos + numberOfSteps; // we go forward from currPos spot by numberOfSteps
     }
 
-    numbers[next] = true; // Mark the spot as one we've landed on
-    sequence.push(next);
+    numbers[nextPos] = true; // Mark the spot as one we've landed on
+    sequence.push(nextPos);
 
-    let anArc = new Arc(index, next, numberOfSteps % 2);
+    let anArc = new Arc(currPos, nextPos, numberOfSteps % 2);
 
     arcs.push(anArc);
-    index = next;
+    currPos = nextPos;
 
-    let frequnecy = pow(2, ((index-2) % 80 - 50) / 12)  * 440;
+    // Producing sound
+    let frequnecy = pow(2, ((currPos-2) % 80 - 50) / 12)  * 440;
     oscillator.freq(frequnecy);
 
     if(soundButton.clicked === "true"){
         envelope.play();
     }
-    if (index > biggest) {
-        biggest = index;
+
+    // to make the arcs smaller when a new arc appear
+    if (currPos > biggestPos) {
+        biggestPos = currPos;
     }
     numberOfSteps++;
 }
@@ -128,7 +133,7 @@ function draw() {
         step();
     }
     translate(0, height / 2);
-    scale(width / biggest);
+    scale(width / biggestPos); // making the arcs smaller when a new arc appear
     background("#fff");
 
     for (let anArc of arcs) {
