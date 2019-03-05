@@ -3,10 +3,7 @@
 // This was made using p5.js library tutorials by Daniel Shiffman
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
 
-// TODO: I know, that using global variables is a bad practice,
-// but in this case I don't know what to to with them :(
-// (but I really really want to know how to get rid of them)
-// TODO: add docstrings
+// TODO: can I make step() shorter?
 
 /**
 * Represents an arc
@@ -24,7 +21,7 @@ function Arc(start, end, direction, color="#ff83a4") {
   this._end = end;
   this._direction = direction;
   this._color = color;
-}
+};
 
 /**
 * Shows an arc
@@ -41,7 +38,7 @@ Arc.prototype.show = function(){
   } else {
       arc(x, 0, diameter, diameter, 0, PI);
     }
-}
+};
 
 /**
 * Creates a canvas
@@ -57,7 +54,7 @@ function setCanvas(parentId, minHeight, maxHeight) {
       canvas = createCanvas(windowWidth, maxHeight);
       canvas.parent(parentId);
   }
-}
+};
 
 /**
 * Creates an envelope and an oscillator
@@ -86,14 +83,46 @@ function setSound(attackTime, decayTime, susRatio, releaseTime,
   oscillator.start();
 
   return [oscillator, envelope];
-}
+};
 
+/**
+* Encapsulate setup, step and draw functions
+ with the data they need
+* @return {object}
+**/
 function drawer() {
   that = {};
 
   let landMarks = [];
   let sequence = [];
   let currPos = 0;
+
+  let visualizationButton = document.getElementById('visualization-button');
+
+  that.visualize = visualizationButton.addEventListener("click", () => {
+      if (visualizationButton.clicked === "true") {
+          visualizationButton.clicked = "false";
+          } else {
+              visualizationButton.clicked = "true";
+          }
+  });
+
+  let soundOnIcon = document.getElementById("sound-on");
+  let soundOffIcon = document.getElementById("sound-off");
+
+  let soundButton = document.getElementById("sound-button")
+  soundButton.addEventListener("click", () => {
+          if (soundButton.clicked === "true") {
+              soundButton.clicked = "false";
+              soundOnIcon.style.display = "none";
+              soundOffIcon.style.display = "block";
+          } else if (visualizationButton.clicked === "true") {
+              soundButton.clicked = "true";
+              soundOnIcon.style.display = "block";
+              soundOffIcon.style.display = "none";
+
+          };
+  }, false);
 
   that.setup = function() {
       setCanvas("sketchContainer", 300, 400);
@@ -152,47 +181,21 @@ function drawer() {
       scale(width / biggestPos);
       background("#fff");
 
-      arcs.forEach(arc=>arc.show());
+      arcs.forEach(arc => arc.show());
   };
   return that;
-}
+};
 
 let drawer1 = drawer();
 
 function setup() {
   drawer1.setup();
-}
+};
 
 function step() {
   drawer1.step();
-}
+};
 
 function draw() {
   drawer1.draw();
-}
-
-let visualizationButton = document.getElementById('visualization-button');
-visualizationButton.addEventListener("click", () => {
-    if (visualizationButton.clicked === "true") {
-        visualizationButton.clicked = "false";
-        } else {
-            visualizationButton.clicked = "true";
-        }
-});
-
-let soundOnIcon = document.getElementById("sound-on");
-let soundOffIcon = document.getElementById("sound-off");
-
-let soundButton = document.getElementById("sound-button")
-soundButton.addEventListener("click", () => {
-        if (soundButton.clicked === "true") {
-            soundButton.clicked = "false";
-            soundOnIcon.style.display = "none";
-            soundOffIcon.style.display = "block";
-        } else if (visualizationButton.clicked === "true") {
-            soundButton.clicked = "true";
-            soundOnIcon.style.display = "block";
-            soundOffIcon.style.display = "none";
-
-        };
-}, false);
+};
