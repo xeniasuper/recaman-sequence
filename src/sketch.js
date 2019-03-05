@@ -10,14 +10,14 @@
 
 /**
 * Represents an arc
-* {number} start - starting point on the horizontal axis,
+* @param {number} start - starting point on the horizontal axis,
 where we begin to draw an arc
-* {number} end - ending point on the horizontal axis,
+* @param {number} end - ending point on the horizontal axis,
  where we end to draw an arc
-* {number} direction - can be 0 or -1. If it is 0, then an arc
+* @param {number} direction - can be 0 or -1. If it is 0, then an arc
 * is drawn to the up, if it is -1, then an arc is drawn to
 the down
-* {string} color - arc stroke color
+* @param {string} color - arc stroke color
 **/
 function Arc(start, end, direction, color="#ff83a4") {
   this._start = start;
@@ -43,29 +43,11 @@ Arc.prototype.show = function(){
     }
 }
 
-
-let soundOnIcon = document.getElementById("sound-on");
-let soundOffIcon = document.getElementById("sound-off");
-
-let soundButton = document.getElementById("sound-button")
-soundButton.addEventListener("click", () => {
-        if (soundButton.clicked === "true"){
-            soundButton.clicked = "false";
-            soundOnIcon.style.display = "none";
-            soundOffIcon.style.display = "block";
-        } else if (visualizationButton.clicked === "true") {
-            soundButton.clicked = "true";
-            soundOnIcon.style.display = "block";
-            soundOffIcon.style.display = "none";
-
-        };
-}, false);
-
 /**
 * Creates a canvas
-* {string} parentId - id of the canvas parent getElementById
-* {number} minHeight - canvas height for small screens
-* {number} maxHight - canvas height for large screens
+* @param {string} parentId - id of the canvas parent getElementById
+* @param {number} minHeight - canvas height for small screens
+* @param {number} maxHight - canvas height for large screens
 **/
 function setCanvas(parentId, minHeight, maxHeight) {
   let canvas = createCanvas(windowWidth, minHeight);
@@ -79,17 +61,18 @@ function setCanvas(parentId, minHeight, maxHeight) {
 
 /**
 * Creates an envelope and an oscillator
-* {number} attackTime - time until envelope reaches attackLevel
-* {number} decayTime - time until envelope reaches decayLevel.
-* {number} susRatio - ratio between attackLevel and
+* @param {number} attackTime - time until envelope reaches attackLevel
+* @param {number} decayTime - time until envelope reaches decayLevel.
+* @param {number} susRatio - ratio between attackLevel and
   releaseLevel, on a scale from 0 to 1, where 1.0 = attackLevel,
   0.0 = releaseLevel. The susRatio determines the decayLevel
   and the level at which the sustain portion of the envelope
   will sustain.
-* {number} releaseTime - duration of the release
+* @param {number} releaseTime - duration of the release
   portion of the envelope.
-* {number} attackLevel - Level once attack is complete.
-* {number} releaseLevel - level at the end of the release.
+* @param {number} attackLevel - Level once attack is complete.
+* @param {number} releaseLevel - level at the end of the release.
+* @return {array} - [oscillator, envelope]
 **/
 function setSound(attackTime, decayTime, susRatio, releaseTime,
                   attackLevel, releaseLevel) {
@@ -101,76 +84,118 @@ function setSound(attackTime, decayTime, susRatio, releaseTime,
   oscillator.setType("sine");
   oscillator.amp(envelope);
   oscillator.start();
+
+  return [oscillator, envelope];
 }
 
-let landMarks = [];
-let sequence = [];
-let currPos = 0;
+function drawer() {
+  that = {};
+
+  let landMarks = [];
+  let sequence = [];
+  let currPos = 0;
+
+  that.setup = function() {
+      setCanvas("sketchContainer", 300, 400);
+      let [
+           oscillator,
+           envelope
+          ] = setSound(0.001, 0.2, 0.2, 0.5, 1.0, 0);
+
+      canvas.style.margin="0px";
+      frameRate(5);
+
+      landMarks[currPos] = true; // mark that we've landed on the spot
+      sequence.push(currPos);
+  };
+
+  let biggestPos = 0;
+  let numberOfSteps = 1;
+  let arcs = []; // Here we collect arcs that we're drawin
+
+  that.step = function() {
+      let nextPos = currPos - numberOfSteps;
+      if (nextPos < 0 || landMarks[nextPos]) {
+          // There are no negative numbers in the sequence
+          // and we can't land on a spot that has been landed on before, so
+          nextPos = currPos + numberOfSteps; // we go forward from currPos spot by numberOfSteps
+      }
+
+      landMarks[nextPos] = true; // Mark the spot as one we've landed on
+      sequence.push(nextPos);
+
+      let arc = new Arc(currPos, nextPos, numberOfSteps % 2);
+
+      arcs.push(arc);
+      currPos = nextPos;
+
+      // Producing sound
+      let frequnecy = pow(2, ((currPos-2) % 80 - 50) / 12)  * 440;
+      oscillator.freq(frequnecy);
+
+      if(soundButton.clicked === "true"){
+          envelope.play();
+      }
+
+      // to make the arcs smaller when a new arc appear
+      if (currPos > biggestPos) {
+          biggestPos = currPos;
+      }
+      numberOfSteps++;
+  };
+
+  that.draw = function() {
+      if (visualizationButton.clicked === "true") {
+          step();
+      }
+      translate(0, height / 2);
+      scale(width / biggestPos);
+      background("#fff");
+
+      for (let anArc of arcs) {
+              anArc.show();
+      }
+  };
+
+  return that;
+}
+
+let drawer1 = drawer();
 
 function setup() {
-    setCanvas("sketchContainer", 300, 400);
-    setSound(0.001, 0.2, 0.2, 0.5, 1.0, 0);
-
-    canvas.style.margin="0px";
-    frameRate(5);
-
-    landMarks[currPos] = true; // mark that we've landed on the spot
-    sequence.push(currPos);
+  drawer1.setup();
 }
 
-let biggestPos = 0;
-let numberOfSteps = 1;
-let arcs = []; // Here we collect arcs that we're drawin
-
 function step() {
-    let nextPos = currPos - numberOfSteps;
-    if (nextPos < 0 || landMarks[nextPos]) {
-        // There are no negative numbers in the sequence
-        // and we can't land on a spot that has been landed on before, so
-        nextPos = currPos + numberOfSteps; // we go forward from currPos spot by numberOfSteps
-    }
+  drawer1.step();
+}
 
-    landMarks[nextPos] = true; // Mark the spot as one we've landed on
-    sequence.push(nextPos);
-
-    let anArc = new Arc(currPos, nextPos, numberOfSteps % 2);
-
-    arcs.push(anArc);
-    currPos = nextPos;
-
-    // Producing sound
-    let frequnecy = pow(2, ((currPos-2) % 80 - 50) / 12)  * 440;
-    oscillator.freq(frequnecy);
-
-    if(soundButton.clicked === "true"){
-        envelope.play();
-    }
-
-    // to make the arcs smaller when a new arc appear
-    if (currPos > biggestPos) {
-        biggestPos = currPos;
-    }
-    numberOfSteps++;
+function draw() {
+  drawer1.draw();
 }
 
 let visualizationButton = document.getElementById('visualization-button');
 visualizationButton.addEventListener("click", () => {
-    if (visualizationButton.clicked === "true"){
+    if (visualizationButton.clicked === "true") {
         visualizationButton.clicked = "false";
         } else {
             visualizationButton.clicked = "true";
         }
 });
 
-function draw() {
-    if (visualizationButton.clicked === "true") {
-        step();
-    }
-    translate(0, height / 2);
-    scale(width / biggestPos);
-    background("#fff");
+let soundOnIcon = document.getElementById("sound-on");
+let soundOffIcon = document.getElementById("sound-off");
 
-    for (let anArc of arcs) {
-            anArc.show();
-    }
-};
+let soundButton = document.getElementById("sound-button")
+soundButton.addEventListener("click", () => {
+        if (soundButton.clicked === "true") {
+            soundButton.clicked = "false";
+            soundOnIcon.style.display = "none";
+            soundOffIcon.style.display = "block";
+        } else if (visualizationButton.clicked === "true") {
+            soundButton.clicked = "true";
+            soundOnIcon.style.display = "block";
+            soundOffIcon.style.display = "none";
+
+        };
+}, false);
