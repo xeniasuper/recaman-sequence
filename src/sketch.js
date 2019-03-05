@@ -8,13 +8,27 @@
 // (but I really really want to know how to get rid of them)
 // TODO: add docstrings
 
-function Arc(start, end, direction) {
+/**
+* Represents an arc
+* {number} start - starting point on the horizontal axis,
+where we begin to draw an arc
+* {number} end - ending point on the horizontal axis,
+ where we end to draw an arc
+* {number} direction - can be 0 or -1. If it is 0, then an arc
+* is drawn to the up, if it is -1, then an arc is drawn to
+the down
+* {string} color - arc stroke color
+**/
+function Arc(start, end, direction, color="#ff83a4") {
   this._start = start;
   this._end = end;
   this._direction = direction;
-  this._color = "#ff83a4";
+  this._color = color;
 }
 
+/**
+* Shows an arc
+**/
 Arc.prototype.show = function(){
   stroke(this._color);
   strokeWeight(0.5);
@@ -46,10 +60,6 @@ soundButton.addEventListener("click", () => {
 
         };
 }, false);
-
-let landMarks = [];
-let sequence = [];
-let currPos = 0;
 
 /**
 * Creates a canvas
@@ -92,6 +102,10 @@ function setSound(attackTime, decayTime, susRatio, releaseTime,
   oscillator.amp(envelope);
   oscillator.start();
 }
+
+let landMarks = [];
+let sequence = [];
+let currPos = 0;
 
 function setup() {
     setCanvas("sketchContainer", 300, 400);
