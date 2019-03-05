@@ -146,17 +146,14 @@ function drawer() {
 
   that.draw = function() {
       if (visualizationButton.clicked === "true") {
-          step();
+          that.step();
       }
       translate(0, height / 2);
       scale(width / biggestPos);
       background("#fff");
 
-      for (let anArc of arcs) {
-              anArc.show();
-      }
+      arcs.forEach(arc=>arc.show());
   };
-
   return that;
 }
 
