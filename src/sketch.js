@@ -3,18 +3,20 @@
 // This was made using p5.js library tutorials by Daniel Shiffman
 // You can find the tutorials on Daniel's YouTube channel: http://youtube.com/thecodingtrain
 
-// TODO: GET RID OF GLOBAL VARIABLES
+// TODO: I know, that using global variables is a bad practice,
+// but in this case I don't know what to to with them :(
+// (but I really really want to know how to get rid of them)
 // TODO: add docstrings
 
 function Arc(start, end, direction) {
   this._start = start;
   this._end = end;
   this._direction = direction;
+  this._color = "#ff83a4";
 }
 
-let arcColor = "#ff83a4";
 Arc.prototype.show = function(){
-  stroke(arcColor);
+  stroke(this._color);
   strokeWeight(0.5);
   noFill();
 
@@ -27,14 +29,6 @@ Arc.prototype.show = function(){
     }
 }
 
-// The section below is a list of sound parameters that are required by p5 sound library
-const attackLevel = 1.0;
-const releaseLevel = 0;
-const attackTime = 0.001;
-const decayTime = 0.2;
-const susPercent = 0.2;
-const releaseTime = 0.5;
-// End of the section
 
 let soundOnIcon = document.getElementById("sound-on");
 let soundOffIcon = document.getElementById("sound-off");
@@ -57,26 +51,54 @@ let landMarks = [];
 let sequence = [];
 let currPos = 0;
 
-function setup() {
-    let canvas = createCanvas(windowWidth, 300);
-    canvas.parent("sketchContainer");
+/**
+* Creates a canvas
+* {string} parentId - id of the canvas parent getElementById
+* {number} minHeight - canvas height for small screens
+* {number} maxHight - canvas height for large screens
+**/
+function setCanvas(parentId, minHeight, maxHeight) {
+  let canvas = createCanvas(windowWidth, minHeight);
+  canvas.parent(parentId);
 
-    if (window.width > 376) {
-        canvas = createCanvas(windowWidth, 400);
-        canvas.parent("sketchContainer");
-    }
+  if (window.width > 376) {
+      canvas = createCanvas(windowWidth, maxHeight);
+      canvas.parent(parentId);
+  }
+}
+
+/**
+* Creates an envelope and an oscillator
+* {number} attackTime - time until envelope reaches attackLevel
+* {number} decayTime - time until envelope reaches decayLevel.
+* {number} susRatio - ratio between attackLevel and
+  releaseLevel, on a scale from 0 to 1, where 1.0 = attackLevel,
+  0.0 = releaseLevel. The susRatio determines the decayLevel
+  and the level at which the sustain portion of the envelope
+  will sustain.
+* {number} releaseTime - duration of the release
+  portion of the envelope.
+* {number} attackLevel - Level once attack is complete.
+* {number} releaseLevel - level at the end of the release.
+**/
+function setSound(attackTime, decayTime, susRatio, releaseTime,
+                  attackLevel, releaseLevel) {
+  envelope = new p5.Env();
+  envelope.setADSR(attackTime, decayTime, susRatio, releaseTime);
+  envelope.setRange(attackLevel, releaseLevel);
+
+  oscillator = new p5.Oscillator();
+  oscillator.setType("sine");
+  oscillator.amp(envelope);
+  oscillator.start();
+}
+
+function setup() {
+    setCanvas("sketchContainer", 300, 400);
+    setSound(0.001, 0.2, 0.2, 0.5, 1.0, 0);
 
     canvas.style.margin="0px";
     frameRate(5);
-
-    envelope = new p5.Env();
-    envelope.setADSR(attackTime, decayTime, susPercent, releaseTime);
-    envelope.setRange(attackLevel, releaseLevel);
-
-    oscillator = new p5.Oscillator();
-    oscillator.setType("sine");
-    oscillator.amp(envelope);
-    oscillator.start();
 
     landMarks[currPos] = true; // mark that we've landed on the spot
     sequence.push(currPos);
