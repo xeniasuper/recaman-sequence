@@ -1,0 +1,128 @@
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$font: "Open Sans", sans-serif;
+$pink: #ff83a4;
+$gray: #808080;
+$button-pink: #d32654;
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body,
+.section
+ {
+  @extend %flex-center;
+  flex-flow: column;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+h1 {
+  font-family: $font;
+  text-align: center;
+  font-weight: 300;
+  color: $pink;
+}
+
+h2 {
+    font-family: $font;
+    text-align: center;
+}
+
+p {
+  font-family: $font;
+}
+
+a {
+	color: $gray;
+}
+
+input {
+  outline: none;
+}
+
+.section {
+  width: 75%;
+  @media only screen and (min-width : 376px) {
+        width: 40%;
+      }
+}
+
+img {
+  width: 100%;
+}
+
+.center-italic {
+    font-family: $font;
+    text-align: center;
+    font-style: italic;
+    color: $pink;
+}
+
+.button-form {
+    @extend %flex-center;
+    flex-flow: row;
+    margin-top: 15px;
+}
+
+.button {
+    font-family: $font;
+    font-weight: 400;
+    margin: 5px;
+    padding: 6px 15px;
+    color: $button-pink;
+    background: #fff;
+    border: 0.1em solid $button-pink;
+    border-radius: 5px;
+    vertical-align: middle;
+    text-align:center;
+    transition: all 0.3s;
+}
+
+.button:hover {
+  color: #fff;
+  background: $button-pink;
+}
+
+.sound {
+    width: 21px;
+    height: 21px;
+    vertical-align: middle;
+}
+
+#sound-on {
+    display: none;
+}
+
+#sketchContainer {
+  display: flex;
+  justify-content: center;
+  width: auto;
+}
+
+footer {
+    font-family: $font;
+    font-style: italic;
+    text-align: center;
+    font-size: 0.8em;
+    color: $gray;
+    margin-bottom: 20px;
+    width: 75%;
+}
+
+#defaultCanvas0 {
+  width: 100%;
+  height: 100%;
+}
+
+.animation {
+  width: 75%;
+}
