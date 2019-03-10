@@ -67,6 +67,11 @@ img {
     color: $pink;
 }
 
+.warning {
+  color: $gray;
+  font-size: 0.8em;
+}
+
 .button-form {
     @extend %flex-center;
     flex-flow: row;
