@@ -48,10 +48,9 @@
     <p class="section sequence-descr">And finally let's visualize the Recamán Sequence and check out audio interpretation of it! As you'll see, it sounds kind of music that was made in the 1970s by Kraftwerk and other similar bands. It seems to me, that artists of that period would like the pattern that is drawn by the computer, too.</p>
 
     <form class="button-form">
-    	<input class="button" id="visualization-button" type="button"	value="Visualization" clicked="true">
-      <!-- In fact, this button means 'visualixation is turned off', so that's why the defaul value of 'clicked' is true-->
-      <input class="button" id="sound-button" type="button" value="Sound"	clicked="true">
-      <!-- In fact, this button means 'sound is turned off', so that's why the defaul value of 'clicked' is true-->
+    	<input class="button" id="visualization-button" type="button"	value="Visualization" clicked="false">
+			
+      <input class="button" id="sound-button" type="button" value="Sound"	clicked="false">
 	    <img class="sound" id="sound-off" src="pics/soundOff.png" alt="sound OFF">
 	    <img class="sound" id="sound-on" src="pics/soundOn.png" alt="sound ON">
 		</form>
@@ -64,9 +63,9 @@
     <footer>
         This visualization was made using <a href="https://www.youtube.com/user/shiffman/"> tutorials by Daniel Shiffman</a> and inspired by <a href="https://youtu.be/FGC5TdIiT9U">Numberphile's video</a> about the sequence.
     </footer>
-    <script src="src/libraries/p5.js"></script>
-    <script src="src/libraries/p5.dom.js"></script>
-    <script src="src/libraries/p5.sound.js"></script>
-    <script src="src/sketch.js"></script>
+    <script src="sketch/libraries/p5.js"></script>
+    <script src="sketch/libraries/p5.dom.js"></script>
+    <script src="sketch/libraries/p5.sound.js"></script>
+    <script src="sketch/sketch.js"></script>
     </body>
 </html>
