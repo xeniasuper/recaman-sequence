@@ -2,7 +2,7 @@
 https://xeniasuper.github.io/recaman-sequence/
 
 An explorable explanation of the Recamán Sequence made for the [Explorable Explanation Jam](
-https://xeniasuper.github.io/recaman-sequence/)
+https://explorabl.es/jam/)
 
 Check out [Numberphile YouTube channel](https://youtu.be/FGC5TdIiT9U) to discover more about the interpretation and the sequence.
 
