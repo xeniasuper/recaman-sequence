@@ -130,6 +130,7 @@ function setStepDraw() {
 			oscillator.freq(frequnecy);
 
 			if(soundButton.clicked === "true"){
+					oscillator.start();	
 					envelope.play();
 			}
 
@@ -211,8 +212,7 @@ function setSound(attackTime, decayTime, susRatio, releaseTime,
 	oscillator = new p5.Oscillator();
 	oscillator.setType("sine");
 	oscillator.amp(envelope);
-	oscillator.start();
-
+	
 	return [oscillator, envelope];
 };
 
